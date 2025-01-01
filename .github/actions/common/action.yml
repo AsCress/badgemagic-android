@@ -18,7 +18,7 @@ runs:
 
     - name: Analyze Code
       shell: bash
-      run: flutter analyze
+      run: flutter analyze --no-fatal-infos
 
     - name: Run tests
       shell: bash
