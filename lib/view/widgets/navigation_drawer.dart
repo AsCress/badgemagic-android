@@ -272,7 +272,7 @@ class BMDrawer extends StatelessWidget {
             ),
             onTap: () {
               Navigator.pop(context);
-              openUrl('https://github.com/fossasia/badgemagic-android/issues');
+              openUrl('https://github.com/fossasia/badgemagic-app/issues');
             },
           ),
           ListTile(

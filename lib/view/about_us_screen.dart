@@ -196,7 +196,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                             color: Colors.grey),
                       ),
                       onTap: () => openUrl(
-                          'https://github.com/fossasia/badgemagic-android/blob/development/LICENSE'),
+                          'https://github.com/fossasia/badgemagic-app/blob/development/LICENSE'),
                     ),
                     ListTile(
                       leading: Image.asset('assets/icons/book.png', height: 40),
