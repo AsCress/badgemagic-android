@@ -1,4 +1,3 @@
-import 'package:badgemagic/bademagic_module/utils/byte_array_utils.dart';
 import 'package:badgemagic/providers/animation_badge_provider.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +16,5 @@ class SpeedDialProvider extends ChangeNotifier {
   SpeedDialProvider(AnimationBadgeProvider provider) {
     badgeProvider = provider;
     notifyListeners();
-    logger.i("Badge Provider set for SpeedDialProvider");
   }
 }

@@ -1,5 +1,4 @@
 import 'package:badgemagic/constants.dart';
-import 'package:badgemagic/view/widgets/about_us_daialog.dart';
 import 'package:badgemagic/view/widgets/common_scaffold_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -62,8 +61,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                       ),
                       const SizedBox(height: 30),
                       Text(
-                        'Badge Magic is an Android app to control LED name badges. '
-                        'The goal is to provide options to portray names, graphics, and simple animations on LED badges. '
+                        'Badge Magic is an app to control LED name badges. '
                         'The goal is to provide options to portray names, graphics, and simple animations on LED badges. '
                         'For the data transfer from the smartphone to the LED badge we use Bluetooth. The project is based on the work of Nihlcem.',
                         textAlign: TextAlign.justify,
@@ -88,7 +86,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                           ),
                           GestureDetector(
                             onTap: () => openUrl(
-                                'https://github.com/fossasia/badge-magic-android'),
+                                'https://github.com/fossasia/badgemagic-app/graphs/contributors'),
                             child: Text(
                               'FOSSASIA contributors',
                               style: GoogleFonts.sora(
@@ -145,8 +143,8 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                             fontWeight: FontWeight.w500,
                             color: Colors.grey),
                       ),
-                      onTap: () => openUrl(
-                          'https://github.com/fossasia/badge-magic-android'),
+                      onTap: () =>
+                          openUrl('https://github.com/fossasia/badgemagic-app'),
                     ),
                   ],
                 ),
@@ -198,24 +196,24 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                       onTap: () => openUrl(
                           'https://github.com/fossasia/badgemagic-app/blob/development/LICENSE'),
                     ),
-                    ListTile(
-                      leading: Image.asset('assets/icons/book.png', height: 40),
-                      title: Text(
-                        'Library Licenses',
-                        style: GoogleFonts.sora(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black),
-                      ),
-                      subtitle: Text(
-                        'Check third-party libs used on Badge Magic.',
-                        style: GoogleFonts.sora(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.grey),
-                      ),
-                      onTap: () => showLicenseDialog(context),
-                    ),
+                    // ListTile(
+                    //   leading: Image.asset('assets/icons/book.png', height: 40),
+                    //   title: Text(
+                    //     'Library Licenses',
+                    //     style: GoogleFonts.sora(
+                    //         fontSize: 16,
+                    //         fontWeight: FontWeight.w500,
+                    //         color: Colors.black),
+                    //   ),
+                    //   subtitle: Text(
+                    //     'Check third-party libs used on Badge Magic.',
+                    //     style: GoogleFonts.sora(
+                    //         fontSize: 12,
+                    //         fontWeight: FontWeight.w500,
+                    //         color: Colors.grey),
+                    //   ),
+                    //   onTap: () => showLicenseDialog(context),
+                    // ),
                   ],
                 ),
               ),

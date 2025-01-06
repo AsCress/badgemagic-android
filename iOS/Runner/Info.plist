@@ -3,7 +3,11 @@
 <plist version="1.0">
 	<dict>
 		<key>NSBluetoothAlwaysUsageDescription</key>
-		<string>This app needs Bluetooth to function</string>
+		<string>App needs Bluetooth access to control BLE Badge</string>
+		<key>NSBluetoothPeripheralUsageDescription</key>
+		<string>App needs Bluetooth Peripheral access to control BLE Badge</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>App needs Photos access to help convert photos to badge images</string>
 		<key>CFBundleDevelopmentRegion</key>
 		<string>$(DEVELOPMENT_LANGUAGE)</string>
 		<key>CFBundleDisplayName</key>
@@ -54,5 +58,7 @@
 		<true />
 		<key>UIApplicationSupportsIndirectInputEvents</key>
 		<true />
+		<key>ITSAppUsesNonExemptEncryption</key>
+		<false/>
 	</dict>
 </plist>

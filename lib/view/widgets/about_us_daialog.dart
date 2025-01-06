@@ -185,7 +185,7 @@ void showLicenseDialog(BuildContext context) {
                           LicenseDialogContainer(
                             title: '• Android BLE Scanner Compat library',
                             url:
-                                'https://github.com/NordicSemiconductor/Andr oid-Scanner-Compat-Library',
+                                'https://github.com/NordicSemiconductor/Android-Scanner-Compat-Library',
                             content: ''''Copyright 2015, Nordic Semiconductor
                     
                     Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at

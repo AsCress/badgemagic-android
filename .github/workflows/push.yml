@@ -64,7 +64,7 @@ jobs:
 
       - name: Pre Checks
         run: |
-          bash scripts/check-screenshots.sh
+          bash scripts/check-android-screenshots.sh
 
       - name: Prepare Build Keys
         if: ${{ github.repository == 'fossasia/badgemagic-app' }}
@@ -72,7 +72,7 @@ jobs:
           ENCRYPTED_F10B5E0E5262_IV: ${{ secrets.ENCRYPTED_F10B5E0E5262_IV }}
           ENCRYPTED_F10B5E0E5262_KEY: ${{ secrets.ENCRYPTED_F10B5E0E5262_KEY }}
         run: |
-          bash scripts/prep-key.sh
+          bash scripts/prep-android-key.sh
   
       - name: Android Workflow
         uses: ./.github/actions/android
@@ -136,23 +136,11 @@ jobs:
           git branch -m apk
           git push --force origin apk
 
-      - name: Setup Ruby
-        if: ${{ github.repository == 'fossasia/badgemagic-app' }}
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.3'
-          bundler-cache: true
-      
-      - name: Prepare Bundler
-        if: ${{ github.repository == 'fossasia/badgemagic-app' }}
-        run: |
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
-      
       - name: Push app in open testing track
         if: ${{ github.repository == 'fossasia/badgemagic-app' }}
         run: |
-          bundle exec fastlane uploadToOpenTesting
+          cd ./android
+          fastlane uploadToOpenTesting
           if [[ $? -ne 0 ]]; then
               exit 1
           fi
@@ -164,11 +152,40 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Prepare Build Keys
+        if: ${{ github.repository == 'fossasia/badgemagic-app' }}
+        env:
+          ENCRYPTED_IOS_IV: ${{ secrets.ENCRYPTED_IOS_IV }}
+          ENCRYPTED_IOS_KEY: ${{ secrets.ENCRYPTED_IOS_KEY }}
+        run: |
+          bash scripts/prep-ios-key.sh
+
+      - name: Setup Certs
+        if: ${{ github.repository == 'fossasia/badgemagic-app' }}
+        env:
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+        run: |
+          cd ./iOS
+          fastlane setupCertificates
+          if [[ $? -ne 0 ]]; then
+              exit 1
+          fi
+    
       - name: iOS Workflow
         uses: ./.github/actions/ios
         with:
           VERSION_NAME: ${{needs.common.outputs.VERSION_NAME}}
           VERSION_CODE: ${{needs.common.outputs.VERSION_CODE}}
+      
+      - name: Push app to testflight
+        if: ${{ github.repository == 'fossasia/badgemagic-app' }}
+        run: |
+          cd ./iOS
+          fastlane uploadToBeta
+          if [[ $? -ne 0 ]]; then
+              exit 1
+          fi
   
   update-release:
     name: Update Draft Release
