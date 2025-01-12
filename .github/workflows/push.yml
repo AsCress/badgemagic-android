@@ -62,10 +62,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Pre Checks
-        run: |
-          bash scripts/check-android-screenshots.sh
-
       - name: Prepare Build Keys
         if: ${{ github.repository == 'fossasia/badgemagic-app' }}
         env:
@@ -140,6 +136,7 @@ jobs:
         if: ${{ github.repository == 'fossasia/badgemagic-app' }}
         run: |
           cd ./android
+          git clone --branch=fastlane-android --depth=1 https://${{ github.repository_owner }}:${{ github.token }}@github.com/${{ github.repository }} fastlane
           fastlane uploadToOpenTesting
           if [[ $? -ne 0 ]]; then
               exit 1
@@ -167,6 +164,7 @@ jobs:
           MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
         run: |
           cd ./iOS
+          git clone --branch=fastlane-ios --depth=1 https://${{ github.repository_owner }}:${{ github.token }}@github.com/${{ github.repository }} fastlane
           fastlane setupCertificates
           if [[ $? -ne 0 ]]; then
               exit 1
